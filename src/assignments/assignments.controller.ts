@@ -17,7 +17,7 @@ getFibonacci(@Param('n') n: string) {
     return { sequence: sequence.slice(0, num) };
 }
 
-// Assignment2 - Prime Number identifier
+// Assignment2 - Prime Number Checker
 @Get('prime/:number')
   isPrime(@Param('number') number: string) {
     const num = parseInt(number, 10);
@@ -29,4 +29,14 @@ getFibonacci(@Param('n') n: string) {
 
     return { isPrime };
   }
+
+// Assignment3 - Factorial Calculator
+@Get('factorial/:number')
+  getFactorial(@Param('number') number: string) {
+    const num = parseInt(number, 10);
+    if (num < 0 || isNaN(num)) return { error: 'Please Enter a Positive Number Only.'};
+
+    const factorial = num <= 1 ? 1 : Array.from({ length: num }, (_, i) => i + 1).reduce((a, b) => a * b);
+    return { factorial };
+}
 }
