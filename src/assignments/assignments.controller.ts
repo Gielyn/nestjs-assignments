@@ -16,4 +16,17 @@ getFibonacci(@Param('n') n: string) {
     
     return { sequence: sequence.slice(0, num) };
 }
+
+// Assignment2 - Prime Number identifier
+@Get('prime/:number')
+  isPrime(@Param('number') number: string) {
+    const num = parseInt(number, 10);
+    if (num <= 1 || isNaN(num)) return { isPrime: false };
+
+    const isPrime = ![...Array(Math.floor(Math.sqrt(num)) - 1).keys()]
+        .map(i => i + 2)
+        .some(i => num % i === 0);
+
+    return { isPrime };
+  }
 }
